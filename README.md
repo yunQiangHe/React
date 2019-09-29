@@ -23,3 +23,14 @@ my-app
 ```
 
 ## 2.响应式设计和数据的绑定
+
+## 3.JSX
+JavaScript 的语法扩展
+
+## 4. 函数是式编程 functional Programming
+
+## 5.React生命周期的四个大阶段：
+- Initialization:初始化阶段。
+- Mounting: 挂在阶段。
+- Updation: 更新阶段。
+- Unmounting: 销毁阶段
