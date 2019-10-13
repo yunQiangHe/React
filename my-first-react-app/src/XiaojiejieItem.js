@@ -17,14 +17,14 @@ class XiaojiejieItem extends Component {
         );
     }
 
-    shouldComponentUpdate(nextProps, nextState){
+    shouldComponentUpdate(nextProps, nextState) {
         // console.log("nextProps:变化后的属性;");
         // console.log(nextProps);
         // console.log("nextState:变化后的状态;");
         // console.log(nextState);
-        if(nextProps.content !== this.props.content){
+        if (nextProps.content !== this.props.content) {
             return true
-        }else{
+        } else {
             return false
         }
     }
@@ -39,8 +39,7 @@ class XiaojiejieItem extends Component {
 
     handleClick() {
         console.log("点击删除" + this.props.index);
-        this.props.deletItem(this.props.index)
-
+        this.props.deletItem(this.props.index);
     }
 
 }

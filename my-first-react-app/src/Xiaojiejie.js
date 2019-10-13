@@ -1,6 +1,9 @@
 import React, { Component, Fragment } from 'react'
+import axios from 'axios'
 import './Xiaojiejie.css'
 import XiaojiejieItem from './XiaojiejieItem'
+import Boss from './Boss'
+import { CSSTransition, TransitionGroup } from 'react-transition-group'
 
 class Xiaojiejie extends Component {
     constructor(props) {
@@ -33,7 +36,7 @@ class Xiaojiejie extends Component {
                     />
                     <button onClick={this.addList.bind(this)}>增加服务</button>
                 </div>
-                <ul>
+                <ul ref={(ul) => { this.ul = ul }}>
                     {/*
                         this.state.list.map((item, index) => {
                             return (
@@ -45,20 +48,30 @@ class Xiaojiejie extends Component {
                             )
                         })
                     */}
-                    {
-                        this.state.list.map((item, index) => {
-                            return (
-                                <XiaojiejieItem
-                                    key={index}
-                                    content={item}
-                                    index={index}
-                                    deletItem={this.deletItem.bind(this)}
-                                />
-                            )
-                        })
-                    }
-
+                    <TransitionGroup>
+                        {
+                            this.state.list.map((item, index) => {
+                                return (
+                                    <CSSTransition
+                                        timeout={1000}
+                                        classNames='boss-text'
+                                        unmountOnExit
+                                        appear={true}
+                                        key={index + item}
+                                    >
+                                        <XiaojiejieItem
+                                            key={index}
+                                            content={item}
+                                            index={index}
+                                            deletItem={this.deletItem.bind(this)}
+                                        />
+                                    </CSSTransition>
+                                )
+                            })
+                        }
+                    </TransitionGroup>
                 </ul>
+                <Boss />
             </Fragment>
         )
     }
@@ -88,13 +101,13 @@ class Xiaojiejie extends Component {
     // componentDidUpdate(){
     //     console.log("4componentDidUpdate----组件更新之后执行");
     // }
-    
+
     // componentWillReceiveProps(){
     // 凡是组件都有生命周期函数，所以子组件也是有的，并且子组件接收了props，这时候函数就可以被执行了。
     //     console.log("componentWillReceiveProps");
     // }
 
-  
+
 
     inputChange(e) {
         // console.log("input change event");
@@ -112,11 +125,15 @@ class Xiaojiejie extends Component {
             // ES6 的合并数组
             list: [...this.state.list, { id: Math.ceil(Math.random() * 10000), name: this.state.inputValue }],
             inputValue: ""  //清空输入框
-        },()=>{
+        }, () => {
             console.log(this.state.list);
         })
 
         console.log(this.state.list); //因为setState是异步的 数据少一项
+
+        axios.get('https://api.github.com/users/yunqianghe')
+            .then((res) => { console.log(JSON.stringify(res)) })
+            .catch((error) => { console.log(error) })
 
     }
 
