@@ -4,6 +4,7 @@ import XiaojiejieItem from './XiaojiejieItem'
 
 class Xiaojiejie extends Component {
     constructor(props) {
+        // console.log("constructor");
         super(props)
         this.state = {
             inputValue: '',
@@ -15,6 +16,7 @@ class Xiaojiejie extends Component {
     }
 
     render() {
+        // console.log("3render--开始挂载渲染");
         return (
             <Fragment>
                 {/* 我是注释 */}
@@ -47,7 +49,7 @@ class Xiaojiejie extends Component {
                         this.state.list.map((item, index) => {
                             return (
                                 <XiaojiejieItem
-                                    key={index + item}
+                                    key={index}
                                     content={item}
                                     index={index}
                                     deletItem={this.deletItem.bind(this)}
@@ -60,6 +62,39 @@ class Xiaojiejie extends Component {
             </Fragment>
         )
     }
+
+    // 不推荐了
+    // componentWillMount(){
+    //     console.log("componentWillMount");
+    // }
+
+    // componentDidMount(){
+    //     console.log("componentDidMount--组件挂载完成的时刻执行");
+    // }
+
+    // shouldComponentUpdate(){
+    //     console.log('1shouldComponentUpdate---组件发生改变前执行');
+    //     // index.js:1375 Warning: Xiaojiejie.shouldComponentUpdate(): Returned undefined instead of a boolean value. Make sure to return true or false. in Xiaojiejie (at src/​index.js:6)
+    //     // 必须返回一个布尔值
+    //     // 返回false 不会往下执行
+    //     return true
+    // }
+
+    // 不推荐了
+    // componentWillUpdate(){
+    //     console.log("2componentWillUpdate---组件更新前，shouldComponentUpdate函数之后执行");
+    // }
+
+    // componentDidUpdate(){
+    //     console.log("4componentDidUpdate----组件更新之后执行");
+    // }
+    
+    // componentWillReceiveProps(){
+    // 凡是组件都有生命周期函数，所以子组件也是有的，并且子组件接收了props，这时候函数就可以被执行了。
+    //     console.log("componentWillReceiveProps");
+    // }
+
+  
 
     inputChange(e) {
         // console.log("input change event");
